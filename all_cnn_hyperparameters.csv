@@ -1,0 +1,13 @@
+config,val_loss,val_accuracy
+"{'learning_rate': 0.01, 'optimizer': 'adam', 'batch_size': 16, 'final_activation': 'sigmoid', 'dropout_rate': 0.3}",0.2297365665435791,0.920634925365448
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.5}",0.14055956900119781,0.9438339471817017
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 64, 'final_activation': 'sigmoid', 'dropout_rate': 0.5}",0.1446130871772766,0.9377289414405823
+"{'learning_rate': 0.0001, 'optimizer': 'adam', 'batch_size': 64, 'final_activation': 'sigmoid', 'dropout_rate': 0.5}",0.252371609210968,0.9047619104385376
+"{'learning_rate': 0.0001, 'optimizer': 'sgd', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.3}",0.687361478805542,0.54334557056427
+"{'learning_rate': 0.0001, 'optimizer': 'rmsprop', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.5}",0.27560096979141235,0.8864468932151794
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'relu', 'dropout_rate': 0.5}",0.5287628173828125,0.7277167439460754
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'softmax', 'dropout_rate': 0.5}",0.13228367269039154,0.44688645005226135
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.4}",0.4,0.94
+"{'learning_rate': 0.0001, 'optimizer': 'rmsprop', 'batch_size': 16, 'final_activation': 'sigmoid', 'dropout_rate': 0.5}",0.38,0.95
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.3}",0.11539015173912048,0.9584859609603882
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 16, 'final_activation': 'sigmoid', 'dropout_rate': 0.4}",0.1421104073524475,0.9438339471817017

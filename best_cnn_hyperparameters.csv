@@ -1,0 +1,2 @@
+config,val_loss,val_accuracy
+"{'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.3}",0.11539015173912048,0.9584859609603882
