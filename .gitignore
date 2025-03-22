@@ -177,4 +177,4 @@ datasets/
 
 .vscode/
 
-./saved_models/
+saved_models/
