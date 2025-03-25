@@ -5,7 +5,10 @@
 - **Contributors** :
   - Aryan Mishra(IMT2022502, Aryan.Mishra@iiitb.ac.in)
   - Md Owais(IMT2022102, Mohammad.Owais@iiitb.ac.in)
-- **GitHub Repository** : https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502
+- ** Clone GitHub Repository** :
+  ```
+  https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502.git
+  ```
 - Files:
   - **BinaryClassification.ipynb** : Tasks A and B.
     - **all_cnn_hyperparameters.csv** : All the hyperparameters used and their results in Task B.
