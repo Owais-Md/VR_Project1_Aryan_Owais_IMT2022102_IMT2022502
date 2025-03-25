@@ -17,8 +17,8 @@ The implementation leverages Python, utilizing libraries such as OpenCV, scikit-
 ## Submission
 ----------
 - **Contributors** :
-  - Aryan Mishra(IMT2022502)
-  - Md Owais(IMT2022102)
+  - Aryan Mishra(IMT2022502, Aryan.Mishra@iiitb.ac.in)
+  - Md Owais(IMT2022102, Mohammad.Owais@iiitb.ac.in)
 - **GitHub Repository** : https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502
 - Files:
   - **BinaryClassification.ipynb** : Tasks A and B.
@@ -36,17 +36,23 @@ The project utilizes two publicly available datasets:
 #### Face Mask Detection Dataset:
 - **Source** : https://github.com/chandrikadeb7/Face-Mask-Detection/tree/master/dataset
 - **Description** : Contains images of people with and without face masks, labeled for binary classification tasks.
-- **Structure** : Organized into two subfolders:
-  - 'with_mask': Images of individuals wearing masks.
-  - 'without_mask': Images of individuals not wearing masks.
-- **Access** : Stored in a zip file (finaldataset.zip) with images in formats like JPG, PNG, and JPEG.
+- **Structure** :
+  dataset
+├── with_mask # contains images with mask
+└── without_mask # contains images without face-mask
+- **Access** : Stored in a zip file (finaldataset.zip) with images in JPG format.
         
 #### Masked Face Segmentation Dataset (MFSD):
 - **Source** : https://github.com/sadjadrz/MFSD
 - **Description** : Provides images with corresponding ground truth segmentation masks for faces with masks.
-- **Structure** : Contains paired subfolders:
-  - 'face_crop': Cropped face images.
-  - 'face_crop_segmentation': Binary mask images indicating mask regions.
+- **Structure** : 
+  MSFD
+├── 1
+│   ├── face_crop # face-cropped images of images in MSFD/1/img
+│   ├── face_crop_segmentation # ground truth of segmend face-mask
+│   └── img
+└── 2
+    └── img
 - **Access** : Stored in a zip file (MSFD.zip) with 9,382 valid image-mask pairs filtered from the original set.
 
 ## Preprocessing
