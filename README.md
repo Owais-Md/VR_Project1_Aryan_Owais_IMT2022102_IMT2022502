@@ -71,7 +71,7 @@ The project utilizes two publicly available datasets:
 #### A.i: Extract Handcrafted Features
 
 - **Features** : Both Histogram of Oriented Gradients (HOG) features and Scale Invariant Feature Transform(SIFT) features are extracted from the Face Mask Detection dataset and as HOG gave better results, that has been used to train and evaluate the ML classifiers.
-- **Process** : Images are loaded from finaldataset.zip, resized to 64x64, and converted to grayscale before HOG feature extraction.
+- **Process** : Images are loaded from finaldataset.zip, resized to 64x64, and converted to grayscale before both HOG and SIFT feature extraction.
 
 #### A.ii: Train and Evaluate ML Classifiers
 
@@ -99,7 +99,10 @@ The project utilizes two publicly available datasets:
 
 
 
-- **XGBoost** : 
+- **XGBoost** : To get the best results, we create DMatrices(optimised data structure for XGBoost) using the test and train data, experimented between the parameters and used xgb.cv(k fold cross-validation) with early stopping.
+ - **Parameters**:
+   ![Screenshot 2025-03-25 at 4 43 48 PM](https://github.com/user-attachments/assets/7608228b-a2e0-4ff9-96a3-766eb3b8bbc7)
+   ![Screenshot 2025-03-25 at 4 44 33 PM](https://github.com/user-attachments/assets/9231294f-5641-431d-b7d3-4162e8c66b34)
 - **Training**: Features are split into training and validation sets (80-20 split), and classifiers are trained using sklearn.
 - **Evaluation**: Accuracy is computed on the validation set using accuracy_score.
 
