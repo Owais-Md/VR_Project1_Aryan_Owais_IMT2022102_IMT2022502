@@ -99,10 +99,13 @@ The project utilizes two publicly available datasets:
 
 
 
-- **XGBoost** : To get the best results, we create DMatrices(optimised data structure for XGBoost) using the test and train data, experimented between the parameters and used xgb.cv(k fold cross-validation) with early stopping.
- - **Parameters**:
+- **XGBoost** : To get the best results, we create DMatrices(optimised data structure for XGBoost) using the test and train data, experimented between the parameters and used xgb.cv(k fold cross-validation) with early stopping. We got 86 rounds as the best number of rounds for cross validation and used the following parameters: 
+
    ![Screenshot 2025-03-25 at 4 43 48 PM](https://github.com/user-attachments/assets/7608228b-a2e0-4ff9-96a3-766eb3b8bbc7)
+
+
    ![Screenshot 2025-03-25 at 4 44 33 PM](https://github.com/user-attachments/assets/9231294f-5641-431d-b7d3-4162e8c66b34)
+   
 - **Training**: Features are split into training and validation sets (80-20 split), and classifiers are trained using sklearn.
 - **Evaluation**: Accuracy is computed on the validation set using accuracy_score.
 
