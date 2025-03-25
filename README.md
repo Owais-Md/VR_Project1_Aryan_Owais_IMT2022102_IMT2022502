@@ -37,15 +37,18 @@ The project utilizes two publicly available datasets:
 - **Source** : https://github.com/chandrikadeb7/Face-Mask-Detection/tree/master/dataset
 - **Description** : Contains images of people with and without face masks, labeled for binary classification tasks.
 - **Structure** :
+```
   dataset
 ├── with_mask # contains images with mask
 └── without_mask # contains images without face-mask
+```
 - **Access** : Stored in a zip file (finaldataset.zip) with images in JPG format.
         
 #### Masked Face Segmentation Dataset (MFSD):
 - **Source** : https://github.com/sadjadrz/MFSD
 - **Description** : Provides images with corresponding ground truth segmentation masks for faces with masks.
-- **Structure** : 
+- **Structure** :
+```
   MSFD
 ├── 1
 │   ├── face_crop # face-cropped images of images in MSFD/1/img
@@ -53,6 +56,7 @@ The project utilizes two publicly available datasets:
 │   └── img
 └── 2
     └── img
+```
 - **Access** : Stored in a zip file (MSFD.zip) with 9,382 valid image-mask pairs filtered from the original set.
 
 ## Preprocessing
