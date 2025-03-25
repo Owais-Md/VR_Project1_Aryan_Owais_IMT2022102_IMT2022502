@@ -77,6 +77,8 @@ The project utilizes two publicly available datasets:
   - HOG:
     ![Screenshot 2025-03-25 at 6 02 17 PM](https://github.com/user-attachments/assets/3f100aa1-12c5-4f37-8850-6237f877b19c)
     - A HOG feature vector of length 1764 means that each image is represented by 1764 numbers(block-normalised histogram bin values) that capture its gradient orientations and edge information.
+  - SIFT: 
+![Screenshot 2025-03-25 at 6 07 55 PM](https://github.com/user-attachments/assets/902a168f-0a1d-4cfd-9822-e5f0e07dadcd)
 
 - **Process** : Images are loaded from finaldataset.zip, resized to 64x64, and converted to grayscale before both HOG and SIFT feature extraction.
 
