@@ -271,7 +271,9 @@ The project utilizes two publicly available datasets:
 ### Classification:
 - CNN outperforms the traditional ML classifiers used as expected as traditional ML classifiers rely on handcrafted features (like HOG, SIFT), which might not capture all the nuances of the images. CNNs learn hierarchical features that can capture more complex patterns, potentially leading to higher accuracy.
 - Hyperparameter tuning (e.g., lower dropout, optimal learning rate) significantly boosts CNN performance.
-- **Challenges**: Limited dataset size may lead to overfitting; mitigated by dropout and early stopping.
+- **Challenges**:
+  - Traiditonal ML Classifiers: Had to experiment with many different parameters for best results. For Neural network,  We had to add dropout layers and optimiser to prevent overfitting. We tried Randomised searchCV initially on XGBoost but as the dataset was large and it was taking a very long time, we empirically found the best parameters after many tries and used k-fold cross validation to mitigate this issue.
+  - CNN: We had to experiment with a lot of hyperparameter configurations(12) to get the best accuracy and add dropout layers and optimiser as well which led to increased training time.
 ### Segmentation:
 - U-Net provides precise mask delineation thanks to skip connections preserving spatial details, unlike the coarser traditional method.
 - Traditional segmentation struggles with complex mask shapes and lighting variations, leading to lower IoU and Dice scores.
