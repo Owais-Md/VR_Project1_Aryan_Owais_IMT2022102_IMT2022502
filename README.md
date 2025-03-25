@@ -8,6 +8,8 @@
 - **GitHub Repository** : https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502
 - Files:
   - **BinaryClassification.ipynb** : Tasks A and B.
+    - **all_cnn_hyperparameters.csv** : All the hyperparameters used and their results in Task B.
+    - **best_cnn_hyperparameters.csv** : The hyperparameters which gave the best results in Task B.
   - **Segmentation.ipynb** : Tasks C and D.
   - **README.md** : This file.
  
