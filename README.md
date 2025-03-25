@@ -2,7 +2,10 @@
 
 ## Submission
 ----------
-- **GitHub Repository** : VR_Project1_[YourName]_[YourRollNo]
+- **Authors** :
+  - Aryan Mishra(IMT2022502)
+  - Md Owais(IMT2022102)
+- **GitHub Repository** : https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502
 - Files:
   - **classification_notebook.ipynb** : Tasks A and B.
   - **segmentation_notebook.ipynb** : Tasks C and D.
