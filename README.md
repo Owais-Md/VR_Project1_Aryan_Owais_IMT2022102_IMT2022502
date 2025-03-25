@@ -208,19 +208,21 @@ The project utilizes two publicly available datasets:
 ## How to Run the Code
 -------------------
 ### Prerequisites
+- Python: 3.7+
+- Libraries: Install via pip:
+```
+bash
 
-    Python: 3.7+
-    Libraries: Install via pip:
-    bash
-
-    pip install numpy opencv-python matplotlib scikit-learn scikit-image tensorflow torch torchvision
+pip install numpy opencv-python matplotlib scikit-learn scikit-image tensorflow torch torchvision
+```
 - **Datasets**:
-        Download finaldataset.zip from GitHub.
-        Download MSFD.zip from GitHub.
-        Place both in the datasets/ directory.
+  - Download dataset.zip from GitHub.
+  - Download MSFD.zip from GitHub.
+  - Place both in the datasets/ directory.
 
 ### Directory Structure
 -------------------
+```
 VR_Project1_[YourName]_[YourRollNo]/
 ├── datasets/
 │   ├── finaldataset.zip
@@ -228,13 +230,15 @@ VR_Project1_[YourName]_[YourRollNo]/
 ├── classification_notebook.ipynb
 ├── segmentation_notebook.ipynb
 ├── README.md
+```
 
-### Running Classification (classification_notebook.ipynb)
+### Running Classification (BinaryClassification.ipynb)
 --------------------------------------------------------
-Open Notebook:
+- Open Notebook:
+  ```
     bash
-
-    jupyter notebook classification_notebook.ipynb
+    jupyter notebook BinaryClassification.ipynb
+  ```
 - Update Paths:
         Set zip_file_path to "datasets/finaldataset.zip".
 - Execute Cells:
@@ -244,12 +248,13 @@ Open Notebook:
     - Train and tune CNN (Task B).
 - Outputs: Accuracy metrics for SVM, MLP, and CNN.
 
-### Running Segmentation (segmentation_notebook.ipynb)
+### Running Segmentation (Segmentation.ipynb)
 --------------------------------------------------
-    Open Notebook:
+- Open Notebook:
+  ```
     bash
-
-    jupyter notebook segmentation_notebook.ipynb
+    jupyter notebook Segmentation.ipynb
+  ```
 - Update Paths:
         Set zip_file_path to "datasets/MSFD.zip".
 - Execute Cells:
