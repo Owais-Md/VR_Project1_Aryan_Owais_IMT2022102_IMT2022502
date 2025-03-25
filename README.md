@@ -294,7 +294,7 @@ VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/
     jupyter notebook BinaryClassification.ipynb
   ```
 - Update Paths:
-        Set zip_file_path to "datasets/finaldataset.zip".
+        Set zip_file_path to "finaldataset.zip" and ensure that it's in the same folder as the repository.
 - Execute Cells:
   - Run all cells sequentially to:
     - Load and preprocess data.
@@ -310,7 +310,7 @@ VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/
     jupyter notebook Segmentation.ipynb
   ```
 - Update Paths:
-        Set zip_file_path to "datasets/MSFD.zip".
+        Set zip_file_path to "MSFD.zip" and ensure that it is in the same folder as the repository.
 - Execute Cells:
         Run all cells to:
             Perform traditional segmentation (Task C).
