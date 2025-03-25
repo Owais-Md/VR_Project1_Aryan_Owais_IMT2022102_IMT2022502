@@ -1,17 +1,5 @@
 # Face Mask Detection, Classification, and Segmentation Project
 
-## Submission
-----------
-- **Contributors** :
-  - Aryan Mishra(IMT2022502)
-  - Md Owais(IMT2022102)
-- **GitHub Repository** : https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502
-- Files:
-  - **BinaryClassification.ipynb** : Tasks A and B.
-    - **all_cnn_hyperparameters.csv** : All the hyperparameters used and their results in Task B.
-    - **best_cnn_hyperparameters.csv** : The hyperparameters which gave the best results in Task B.
-  - **Segmentation.ipynb** : Tasks C and D.
-  - **README.md** : This file.
  
 ## Introduction
 ------------
@@ -25,6 +13,19 @@ This project focuses on developing a computer vision solution to classify and se
   - A U-Net deep learning model.
 
 The implementation leverages Python, utilizing libraries such as OpenCV, scikit-learn, TensorFlow, and PyTorch, to process images, train models, and evaluate performance.
+
+## Submission
+----------
+- **Contributors** :
+  - Aryan Mishra(IMT2022502)
+  - Md Owais(IMT2022102)
+- **GitHub Repository** : https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502
+- Files:
+  - **BinaryClassification.ipynb** : Tasks A and B.
+    - **all_cnn_hyperparameters.csv** : All the hyperparameters used and their results in Task B.
+    - **best_cnn_hyperparameters.csv** : The hyperparameters which gave the best results in Task B.
+  - **Segmentation.ipynb** : Tasks C and D.
+  - **README.md** : This file.
 
 ## Dataset
 -------
