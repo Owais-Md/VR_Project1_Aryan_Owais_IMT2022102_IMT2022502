@@ -406,9 +406,13 @@ The project utilizes two publicly available datasets:
 - As the dataset is very large , Otsu thresholding is computationally expensive,  and as its accuracy won't be significantly better than Region-filling algorithm, even though we defined the model, we couldn't run it fully locally on the machine.
 
 #### Sample outputs generated:
+
+- **Region Growing algorithm**:
+
 ![image](https://github.com/user-attachments/assets/680bca6d-2797-4a6a-bb88-99f330fd7f77)
 
-
+- **Otsu Threshold algorithm**: (done on one image, as doing on the entire dataset was very computationally expensive.
+- 
 <img width="784" alt="Screenshot 2025-03-26 at 1 15 12 AM" src="https://github.com/user-attachments/assets/fa387226-37dd-4bb1-94ef-bdfa7c65d919" />
 
 
