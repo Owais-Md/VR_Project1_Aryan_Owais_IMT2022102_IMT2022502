@@ -248,7 +248,33 @@ The project utilizes two publicly available datasets:
         - Lower performance due to reduced model capacity.
         - Faster training but led to loss of spatial information.
 
-- **Model 2 (Final U-Net - Best Configuration):**
+- **Model 2 (U-Net with Increased Dropout):**
+    - Dropout layers added after each convolutional block.
+    - Learning rate: 0.0001
+    - Batch size: 16
+    - Loss: Binary Cross-Entropy
+    - Epochs: 12
+    - **Results:**
+        - IoU: 0.79
+        - Dice: 0.85
+    - **Challenges:**
+        - Higher dropout led to regularization but caused underfitting.
+        - Slightly worse segmentation results due to reduced model capacity.
+
+- **Model 3 (Shallower U-Net):**
+    - Encoder and decoder with 3 blocks instead of 4.
+    - Learning rate: 0.0005
+    - Batch size: 8
+    - Loss: Binary Cross-Entropy
+    - Epochs: 8
+    - **Results:**
+        - IoU: 0.81
+        - Dice: 0.88
+    - **Challenges:**
+        - Shallower architecture resulted in loss of fine spatial details.
+        - Faster training but underperformed on complex masks.
+
+- **Model 4 (Final U-Net - Best Configuration):**
     - Optimized U-Net with tuned hyperparameters.
     - Learning rate: 0.0001
     - Batch size: 8
@@ -260,7 +286,6 @@ The project utilizes two publicly available datasets:
     - **Advantages:**
         - Skip connections improved spatial preservation.
         - Achieved better segmentation performance compared to Model 1.
-
 ---
 
 ### U-Net Model Summary
