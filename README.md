@@ -33,7 +33,7 @@ The implementation leverages Python, utilizing libraries such as OpenCV, scikit-
 The project utilizes two publicly available datasets:
 
 #### Face Mask Detection Dataset:
-- **Source** : https://github.com/chandrikadebz/Face-MaskDetection/tree/master/dataset
+- **Source** : https://github.com/chandrikadeb7/Face-Mask-Detection/tree/master/dataset
 - **Description** : Contains images of people with and without face masks, labeled for binary classification tasks.
 - **Structure** : Organized into two subfolders:
   - 'with_mask': Images of individuals wearing masks.
