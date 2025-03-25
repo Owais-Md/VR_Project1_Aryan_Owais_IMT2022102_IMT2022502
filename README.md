@@ -181,12 +181,15 @@ The project utilizes two publicly available datasets:
 --------------------------------------------------------------------
 #### C.i: Implement Region-Based Segmentation
 
-- **Method** : K-Means clustering followed by morphological operations.
-  - Steps:
+- **Otsu's Thresholding**: 
     - Load images from MSFD.zip (face_crop).
-    - Apply K-Means (k=3) to cluster pixels.
-    - Identify mask cluster and refine with binary closing and flood fill.
+    - Use Open CV's inbuilt otsu-thresholding.
+    - Identify mask and refine with binary closing.
     - Generate binary mask.
+- **Region Growing with Flood Fill:**
+    - Seed point initialized at the center of the image.
+    - Flood fill applied with a tolerance to capture nearby pixels of similar intensity.
+    - Morphological closing applied to refine the segmentation result.
 
 #### C.ii: Visualize and Evaluate
 
@@ -199,96 +202,9 @@ The project utilizes two publicly available datasets:
 
 - **Architecture** :
   - Encoder: 4 downsampling blocks (Conv2D + ReLU + MaxPooling).
-  - Bottleneck: Conv2D block.
-  - Decoder: 4 upsampling blocks (UpSampling2D + Conv2D + ReLU) with skip connections.
+  - Bottleneck: Conv2D block at the deepest level.
+  - Decoder: 4 upsampling blocks (UpSampling2D + Conv2D + ReLU) with skip connections to preserve spatial information.
   - Output: 1x1 Conv2D with Sigmoid activation.
-- **Training** : Uses MFSD dataset, resized to 128x128, trained with Adam optimizer and binary cross-entropy loss for 10 epochs.
-
-#### D.ii: Compare U-Net with Traditional Method
-
-- **Evaluation** : IoU and Dice scores are computed on validation set and compared with traditional segmentation results.
-
-## Hyperparameters and Experiments
--------------------------------
-### CNN (Task B)
-- We tried a total of 12 different hyperparameters experiments by using different learning rates, optimizer, batch size, dropout rates and final activation functions.
-- All the hyperparameters combinations along with their results are stored in **all_cnn_hyperparameters.csv**.
-- The best hyperparameters combination along with its result is stored in **best_cnn_hyperparameters.csv**.
-- **All hyperparameter configurations used** :
- <img width="989" alt="Screenshot 2025-03-25 at 5 30 12 PM" src="https://github.com/user-attachments/assets/6f0e1880-dc14-4169-a9b9-b13222f88748" />
-
-- **Best hyperparameter configuration** :
- <img width="989" alt="Screenshot 2025-03-25 at 5 31 43 PM" src="https://github.com/user-attachments/assets/c7f084ba-5746-40bf-a3d9-2d9b8288edf4" />
-
-
-### U-Net (Task D)
-
-- **Hyperparameters** :
-  - Learning rate: 0.001
-  - Optimizer: Adam
-  - Batch size: 16
-  - Epochs: 10
-  - Loss: Binary cross-entropy
-- **Experiments** : Single configuration trained due to computational constraints, with early stopping considered but not implemented in the provided code.
-
----
-
-### Additional Experiments for U-Net (Task D)
-
-- **Model 1 (Baseline U-Net):**
-    - Architecture with fewer filters in encoder and decoder.
-    - Learning rate: 0.0005
-    - Batch size: 8
-    - Loss: Binary Cross-Entropy
-    - Epochs: 10
-    - **Results:**
-        - IoU: 0.78
-        - Dice: 0.85
-    - **Challenges:**
-        - Lower performance due to reduced model capacity.
-        - Faster training but led to loss of spatial information.
-
-- **Model 2 (U-Net with Increased Dropout):**
-    - Dropout layers added after each convolutional block.
-    - Learning rate: 0.0001
-    - Batch size: 16
-    - Loss: Binary Cross-Entropy
-    - Epochs: 12
-    - **Results:**
-        - IoU: 0.79
-        - Dice: 0.85
-    - **Challenges:**
-        - Higher dropout led to regularization but caused underfitting.
-        - Slightly worse segmentation results due to reduced model capacity.
-
-- **Model 3 (Shallower U-Net):**
-    - Encoder and decoder with 3 blocks instead of 4.
-    - Learning rate: 0.0005
-    - Batch size: 8
-    - Loss: Binary Cross-Entropy
-    - Epochs: 8
-    - **Results:**
-        - IoU: 0.81
-        - Dice: 0.88
-    - **Challenges:**
-        - Shallower architecture resulted in loss of fine spatial details.
-        - Faster training but underperformed on complex masks.
-
-- **Model 4 (Final U-Net - Best Configuration):**
-    - Optimized U-Net with tuned hyperparameters.
-    - Learning rate: 0.0001
-    - Batch size: 8
-    - Loss: Binary Cross-Entropy
-    - Epochs: 10
-    - **Results:**
-        - IoU: 0.84
-        - Dice: 0.91
-    - **Advantages:**
-        - Skip connections improved spatial preservation.
-        - Achieved better segmentation performance compared to Model 1.
----
-
-### U-Net Model Summary
 ``` 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
 ┃ Layer (type)                   ┃ Output Shape                 ┃         Param # ┃
@@ -371,6 +287,94 @@ The project utilizes two publicly available datasets:
 │ UNet                           │ [1, 1, 256, 256]             │        31031745 │
 └────────────────────────────────┴──────────────────────────────┴─────────────────┘
 ```
+    
+- **Training** : Uses MFSD dataset, resized to 128x128, trained with Adam optimizer and binary cross-entropy loss for 10 epochs.
+
+#### D.ii: Compare U-Net with Traditional Method
+
+- **Evaluation** : IoU and Dice scores are computed on validation set and compared with traditional segmentation results.
+
+## Hyperparameters and Experiments
+-------------------------------
+### CNN (Task B)
+- We tried a total of 12 different hyperparameters experiments by using different learning rates, optimizer, batch size, dropout rates and final activation functions.
+- All the hyperparameters combinations along with their results are stored in **all_cnn_hyperparameters.csv**.
+- The best hyperparameters combination along with its result is stored in **best_cnn_hyperparameters.csv**.
+- **All hyperparameter configurations used** :
+ <img width="989" alt="Screenshot 2025-03-25 at 5 30 12 PM" src="https://github.com/user-attachments/assets/6f0e1880-dc14-4169-a9b9-b13222f88748" />
+
+- **Best hyperparameter configuration** :
+ <img width="989" alt="Screenshot 2025-03-25 at 5 31 43 PM" src="https://github.com/user-attachments/assets/c7f084ba-5746-40bf-a3d9-2d9b8288edf4" />
+
+
+### U-Net (Task D)
+
+- **Experiments Performed**:
+  - **Model 1 (Baseline U-Net):**
+    - Architecture with fewer filters in encoder and decoder.
+    - Learning rate: 0.0005
+    - Batch size: 8
+    - Loss: Binary Cross-Entropy
+    - Epochs: 10
+    - **Results:**
+        - IoU: 0.78
+        - Dice: 0.85
+    - **Challenges:**
+        - Lower performance due to reduced model capacity.
+        - Faster training but led to loss of spatial information.
+
+ - **Model 2 (U-Net with Increased Dropout):**
+    - Dropout layers added after each convolutional block.
+    - Learning rate: 0.0001
+    - Batch size: 16
+    - Loss: Binary Cross-Entropy
+    - Epochs: 12
+    - **Results:**
+        - IoU: 0.79
+        - Dice: 0.85
+    - **Challenges:**
+        - Higher dropout led to regularization but caused underfitting.
+        - Slightly worse segmentation results due to reduced model capacity.
+
+- **Model 3 (Shallower U-Net):**
+    - Encoder and decoder with 3 blocks instead of 4.
+    - Learning rate: 0.0005
+    - Batch size: 8
+    - Loss: Binary Cross-Entropy
+    - Epochs: 8
+    - **Results:**
+        - IoU: 0.81
+        - Dice: 0.88
+    - **Challenges:**
+        - Shallower architecture resulted in loss of fine spatial details.
+        - Faster training but underperformed on complex masks.
+
+- **Model 4 (Final U-Net - Best Configuration):**
+    - Optimized U-Net with tuned hyperparameters.
+    - Learning rate: 0.0001
+    - Batch size: 8
+    - Loss: Binary Cross-Entropy
+    - Epochs: 10
+    - **Results:**
+        - IoU: 0.84
+        - Dice: 0.91
+    - **Advantages:**
+        - Skip connections improved spatial preservation.
+        - Achieved better segmentation performance compared to Model 1.
+---
+
+- **Final Hyperparameters** :
+ - **Loss Function:** Binary Cross-Entropy
+ - **Optimizer:** Adam
+ - **Learning Rate:** 0.0001
+ - **Batch Size:** 8
+ - **Epochs:** 10
+ - **Data Split:** 70% Training, 15% Validation, 15% Test
+    
+- **Experiments** : Single configuration trained due to computational constraints, with early stopping considered but not implemented in the provided code.
+
+---
+
 ## Results
 -------
 ### Task A: Traditional ML Classifiers(SVM, Neural Network, XGBoost)
@@ -391,41 +395,56 @@ The project utilizes two publicly available datasets:
 
 ### Task C: Traditional Segmentation
 
-#### Methodology
-- **K-Means Clustering:**
-    - Clusters pixels into 3 groups.
-    - Mask region is identified using the centroid closest to the mask’s color.
-    - Handles high-contrast mask patterns but may miss fine details.
-- **Region Growing with Flood Fill:**
-    - Seed point initialized at the center of the image.
-    - Flood fill applied with a tolerance to capture nearby pixels of similar intensity.
-    - Morphological closing applied to refine the segmentation result.
-
-#### Avg Accuracy:
+#### Avg Accuracy using Region filling algorithm:
 - **IoU:** 0.398
 - **Dice:** 0.547
+
+
+  ![Screenshot 2025-03-26 at 12 58 36 AM](https://github.com/user-attachments/assets/f981850d-408f-42aa-88de-93c143f1b92c)
+
+
+- As the dataset is very large , Otsu thresholding is computationally expensive,  and as its accuracy won't be significantly better than Region-filling algorithm, even though we defined the model, we couldn't run it fully locally on the machine.
+
+#### Sample outputs generated:
+![image](https://github.com/user-attachments/assets/680bca6d-2797-4a6a-bb88-99f330fd7f77)
+
+
+<img width="784" alt="Screenshot 2025-03-26 at 1 15 12 AM" src="https://github.com/user-attachments/assets/fa387226-37dd-4bb1-94ef-bdfa7c65d919" />
+
 
 ---
 
 ### Task D: U-Net Segmentation
 
-#### Model Architecture
-- **Encoder:** Series of convolutional layers followed by max pooling.
-- **Bottleneck:** Two convolutional layers at the deepest level.
-- **Decoder:** Upsampling with skip connections to preserve spatial information.
-- **Final Layer:** 1x1 convolution followed by sigmoid activation.
-
-#### Training Details
-- **Loss Function:** Binary Cross-Entropy
-- **Optimizer:** Adam
-- **Learning Rate:** 0.0001
-- **Batch Size:** 8
-- **Epochs:** 10
-- **Data Split:** 70% Training, 15% Validation, 15% Test
 
 #### Validation Results:
 - **Average IoU:** 0.9240
 - **Average Dice:** 0.9561
+
+  <img width="372" alt="Screenshot 2025-03-26 at 1 09 23 AM" src="https://github.com/user-attachments/assets/b95bab44-e9fd-4f4a-87b1-e48e76b59bbb" />
+#### Sample outputs generated:
+- Below are sample visualizations generated from the `test_dataset`:
+    - Original Image
+    - Ground Truth Mask
+    - Model Prediction
+    - Overlay (TP/FP/FN) (white/red/blue)
+
+  <img width="400" alt="Result 1" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_1127.png" />
+
+
+  <img width="400" alt="Result 2" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_214.png" />
+
+
+  <img width="400" alt="Result 3" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_403.png" />
+
+  
+  <img width="400" alt="Result 4" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_440.png" />
+
+
+  <img width="400" alt="Result 5" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_777.png" />
+
+
+
 
 ---
 
@@ -458,7 +477,7 @@ The project utilizes two publicly available datasets:
     - Provides precise segmentation with skip connections that retain spatial information.
     - Requires significant computational resources but achieves better segmentation results.
 - **Traditional Segmentation**:
-    - K-Means often misidentifies regions with high-intensity variance.
+    - Otsu thresholding often misidentifies regions with high-intensity variance and is computationally expensive.
     - Region Growing is sensitive to the choice of seed and tolerance, affecting accuracy.
 - **Challenges:**
     - U-Net training is computationally intensive.
@@ -482,7 +501,7 @@ pip install numpy opencv-python matplotlib scikit-learn scikit-image tensorflow 
 - **Datasets:**
     - Download `finaldataset.zip` from GitHub.
     - Download `MSFD.zip` from GitHub.
-    - Place both in the `datasets/` directory.
+    - Place both in the same directory as the repository.
 
 ---
 
@@ -531,36 +550,6 @@ jupyter notebook Segmentation.ipynb
 - **Outputs:** Visualizations, IoU, and Dice scores.
 
 ---
-
-## Results and Visualizations
-----------------------------
-
-### Sample Results of Segmentation
-
-- Below are sample visualizations generated from the `test_dataset`:
-    - Original Image
-    - Ground Truth Mask
-    - Model Prediction
-    - Overlay (TP/FP/FN) (white/red/blue)
-
-#### Example Results:
-
-  <img width="400" alt="Result 1" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_1127.png" />
-
-
-  <img width="400" alt="Result 2" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_214.png" />
-
-
-  <img width="400" alt="Result 3" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_403.png" />
-
-  
-  <img width="400" alt="Result 4" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_440.png" />
-
-
-  <img width="400" alt="Result 5" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_777.png" />
-
-
-
 
 
 ## Notes
