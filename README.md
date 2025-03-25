@@ -112,7 +112,7 @@ The project utilizes two publicly available datasets:
 
 - Results are compared between SVM, Neural Network and XGBoost based on validation accuracy.
 
-### Task B: Binary Classification Using CNN (3 Marks)
+### Task B: Binary Classification Using CNN
 --------------------------------------------------
 #### B.i: Design and Train a CNN
 
@@ -157,9 +157,9 @@ The project utilizes two publicly available datasets:
 
 #### B.iii: Compare CNN with ML Classifiers
 
-- The best CNN configuration’s accuracy is compared against SVM and MLP results.
+- The best CNN configuration’s accuracy is compared against the traditional ML classifiers(SVM, Neural Network and XGBoost) results.
 
-### Task C: Region Segmentation Using Traditional Techniques (3 Marks)
+### Task C: Region Segmentation Using Traditional Techniques
 --------------------------------------------------------------------
 #### C.i: Implement Region-Based Segmentation
 
@@ -175,7 +175,7 @@ The project utilizes two publicly available datasets:
 - **Visualization** : Input image, ground truth, and predicted mask are plotted.
 - **Metrics** : Intersection over Union (IoU) and Dice score are computed against ground truth masks from face_crop_segmentation.
 
-### Task D: Mask Segmentation Using U-Net (5 Marks)
+### Task D: Mask Segmentation Using U-Net
 -----------------------------------------------
 #### D.i: Train a U-Net Model
 
@@ -193,15 +193,14 @@ The project utilizes two publicly available datasets:
 ## Hyperparameters and Experiments
 -------------------------------
 ### CNN (Task B)
+- We tried a total of 12 different hyperparameters experiments by using different learning rates, optimizer, batch size, dropout rates and final activation functions.
+- All the hyperparameters combinations along with their results are stored in **all_cnn_hyperparameters.csv**.
+- The best hyperparameters combination along with its result is stored in **best_cnn_hyperparameters.csv**.
+- **All hyperparameter configurations used** :
+ <img width="989" alt="Screenshot 2025-03-25 at 5 30 12 PM" src="https://github.com/user-attachments/assets/6f0e1880-dc14-4169-a9b9-b13222f88748" />
 
-- **Configurations**:
-  - See table below for key experiments:
-        Learning Rate	Optimizer	Batch Size	Dropout	Final Activation	Val Accuracy
-        0.01	Adam	16	0.3	Sigmoid	92.06%
-        0.001	Adam	32	0.5	Sigmoid	94.38%
-        0.001	Adam	32	0.3	Sigmoid	95.85%
-        0.0001	SGD	32	0.3	Sigmoid	54.33%
-- **Best Configuration** : Learning rate=0.001, Adam, batch size=32, dropout=0.3, sigmoid activation (95.85% accuracy).
+- **Best hyperparameter onfiguration** :
+ <img width="989" alt="Screenshot 2025-03-25 at 5 31 43 PM" src="https://github.com/user-attachments/assets/c7f084ba-5746-40bf-a3d9-2d9b8288edf4" />
 
 ### U-Net (Task D)
 
