@@ -44,7 +44,7 @@ The project utilizes two publicly available datasets:
 ├── with_mask # contains images with mask
 └── without_mask # contains images without face-mask
 ```
-- **Access** : Stored in a zip file (dataset.zip) with images in JPG format.
+- **Access** : We used the zip file('dataset.zip') from the above link as our dataset.
         
 #### Masked Face Segmentation Dataset (MFSD):
 - **Source** : https://github.com/sadjadrz/MFSD
@@ -59,7 +59,7 @@ The project utilizes two publicly available datasets:
 └── 2
     └── img
 ```
-- **Access** : Stored in a zip file (MSFD.zip) with 9,382 valid image-mask pairs filtered from the original set.
+- **Access** : We used the zip file('MSFD.zip') from the above link as our dataset.
 - **Note** : The dataset can be accessed using the link above and hasn't been downloaded as they are they are very large in size.
 
 ## Preprocessing
