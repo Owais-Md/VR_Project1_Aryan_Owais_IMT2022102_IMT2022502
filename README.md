@@ -151,8 +151,9 @@ The project utilizes two publicly available datasets:
   - Optimizers: Adam, SGD, RMSprop.
   - Batch sizes: 16, 32, 64.
   - Dropout rates: 0.3, 0.4, 0.5.
-  - Final activation: Sigmoid, ReLU, Softmax.-
+  - Final activation: Sigmoid, ReLU, Softmax.
 - **Process**: Models are trained for 5 epochs with early stopping (patience=2) and evaluated on validation accuracy.
+- (The hyperparameters used and their results are shown in the section below.)
 
 #### B.iii: Compare CNN with ML Classifiers
 
