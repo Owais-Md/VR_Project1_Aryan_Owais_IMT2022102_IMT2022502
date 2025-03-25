@@ -38,7 +38,7 @@ The project utilizes two publicly available datasets:
 - **Structure** : Organized into two subfolders:
   - 'with_mask': Images of individuals wearing masks.
   - 'without_mask': Images of individuals not wearing masks.
-- Access: Stored in a zip file (finaldataset.zip) with images in formats like JPG, PNG, and JPEG.
+- **Access** : Stored in a zip file (finaldataset.zip) with images in formats like JPG, PNG, and JPEG.
         
 #### Masked Face Segmentation Dataset (MFSD):
 - **Source** : https://github.com/sadjadrz/MFSD
@@ -46,7 +46,7 @@ The project utilizes two publicly available datasets:
 - **Structure** : Contains paired subfolders:
   - 'face_crop': Cropped face images.
   - 'face_crop_segmentation': Binary mask images indicating mask regions.
-- Access: Stored in a zip file (MSFD.zip) with 9,382 valid image-mask pairs filtered from the original set.
+- **Access** : Stored in a zip file (MSFD.zip) with 9,382 valid image-mask pairs filtered from the original set.
 
 ## Preprocessing
 -------------
