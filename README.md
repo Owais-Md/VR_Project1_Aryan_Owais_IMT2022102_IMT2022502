@@ -1,6 +1,13 @@
 # Face Mask Detection, Classification, and Segmentation Project
-================================================================================
 
+## Submission
+----------
+- **GitHub Repository** : VR_Project1_[YourName]_[YourRollNo]
+- Files:
+  - **classification_notebook.ipynb** : Tasks A and B.
+  - **segmentation_notebook.ipynb** : Tasks C and D.
+  - README.md: This file.
+ 
 ## Introduction
 ------------
 This project focuses on developing a computer vision solution to classify and segment face masks in images, addressing a critical need for automated detection systems in contexts like public health monitoring. The objective is to implement and compare two approaches:
@@ -239,13 +246,5 @@ Open Notebook:
 -----
 - Ensure sufficient RAM and GPU (if available) for U-Net training.
 - Outputs are printed in the notebook; no additional intervention is required.
-
-## Submission
-----------
-- **GitHub Repository** : VR_Project1_[YourName]_[YourRollNo]
-- Files:
-  - **classification_notebook.ipynb** : Tasks A and B.
-  - **segmentation_notebook.ipynb** : Tasks C and D.
-  - README.md: This file.
 
 Replace [YourName] and [YourRollNo] with your actual name and roll number before submission.
