@@ -98,7 +98,6 @@ The project utilizes two publicly available datasets:
 </pre>
 
 
-
 - **XGBoost** : To get the best results, we create DMatrices(optimised data structure for XGBoost) using the test and train data, experimented between the parameters and used xgb.cv(k fold cross-validation) with early stopping. We got 86 rounds as the best number of rounds for cross validation and used the following parameters: 
 
    ![Screenshot 2025-03-25 at 4 43 48 PM](https://github.com/user-attachments/assets/7608228b-a2e0-4ff9-96a3-766eb3b8bbc7)
@@ -111,7 +110,7 @@ The project utilizes two publicly available datasets:
 
 #### A.iii: Report and Compare Accuracy
 
-- Results are compared between SVM and MLP based on validation accuracy.
+- Results are compared between SVM, Neural Network and XGBoost based on validation accuracy.
 
 ### Task B: Binary Classification Using CNN (3 Marks)
 --------------------------------------------------
