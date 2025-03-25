@@ -75,35 +75,32 @@ The project utilizes two publicly available datasets:
 
 #### A.ii: Train and Evaluate ML Classifiers
 
-- **Classifiers**:
-  - **Support Vector Machine (SVM)**:  
-    We tried altering between various kernels and finally used the 'rbf' kernel as it gave the best results.
-
-  - **Neural Network**:  
-    To get the best results, we had to experiment with multiple configurations such as adding dropout layers, using the Adam optimizer, and varying the number of hidden layers and the number of nodes in each layer. The final structure is shown below:
-
-    <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
-┃ Layer (type)                         ┃ Output Shape                ┃         Param #  ┃
+- **Classifiers** :
+  - **Support Vector Machine (SVM)** : We tried altering between various kernels and finally used 'rbf' kernel as it gave the best results.
+  - **Neural Network** : To get the best results, we had to alter in various ways like adding dropout layers, using adam optimiser, experimenting with the number of hidden layers and the number of nodes in each layer to get the best result possible. The final structure is as shown below:
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
-│ dense_34 (Dense)                     │ (None, 256)                 │         451,840  │
+│ dense_34 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)                 │         <span style="color: #00af00; text-decoration-color: #00af00">451,840</span> │
 ├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout_24 (Dropout)                 │ (None, 256)                 │               0  │
+│ dropout_24 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)                 │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dense_35 (Dense)                     │ (None, 128)                 │          32,896  │
+│ dense_35 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)                 │          <span style="color: #00af00; text-decoration-color: #00af00">32,896</span> │
 ├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout_25 (Dropout)                 │ (None, 128)                 │               0  │
+│ dropout_25 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)                 │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dense_36 (Dense)                     │ (None, 64)                  │           8,256  │
+│ dense_36 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)                  │           <span style="color: #00af00; text-decoration-color: #00af00">8,256</span> │
 ├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout_26 (Dropout)                 │ (None, 64)                  │               0  │
+│ dropout_26 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)                  │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dense_37 (Dense)                     │ (None, 1)                   │              65  │
+│ dense_37 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                   │              <span style="color: #00af00; text-decoration-color: #00af00">65</span> │
 └──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
-    </pre>
+</pre>
 
-  - **XGBoost**:  
-    To get the best results, we created DMatrices (an optimized data structure for XGBoost) using the train and test data, experimented with various parameters, and used `xgb.cv` (k-fold cross-validation) with early stopping. We found **86 rounds** to be optimal. The parameters used are shown below:
+
+- **XGBoost** : To get the best results, we create DMatrices(optimised data structure for XGBoost) using the test and train data, experimented between the parameters and used xgb.cv(k fold cross-validation) with early stopping. We got 86 rounds as the best number of rounds for cross validation and used the following parameters: 
+
+fix the alignment as xgboost is not on the same alignment as svm and neural network
 
    ![Screenshot 2025-03-25 at 4 43 48 PM](https://github.com/user-attachments/assets/7608228b-a2e0-4ff9-96a3-766eb3b8bbc7)
 
