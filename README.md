@@ -229,12 +229,15 @@ The project utilizes two publicly available datasets:
 - **SVM** : 93.53% accuracy
 - **Neural Network (MLP)** : 91.09% accuracy
 - **XGBoost** : 92.43% accuracy
+
+  
   ![Screenshot 2025-03-25 at 5 36 30 PM](https://github.com/user-attachments/assets/11271674-60b6-4348-8849-c77ab6c050d6)
 
 
 ### Task B: Convolutional Neural Network(CNN)
 
 - **CNN** : 95.85% accuracy {'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.3}
+  
   ![Screenshot 2025-03-25 at 5 38 12 PM](https://github.com/user-attachments/assets/c7628180-8aa7-44f8-9404-522a25c48bfc)
 
 
