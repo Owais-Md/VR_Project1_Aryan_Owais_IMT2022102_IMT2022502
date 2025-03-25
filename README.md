@@ -58,6 +58,7 @@ The project utilizes two publicly available datasets:
     └── img
 ```
 - **Access** : Stored in a zip file (MSFD.zip) with 9,382 valid image-mask pairs filtered from the original set.
+- **Note** : The dataset can be accessed using the link above and hasn't been downloaded as they are t
 
 ## Preprocessing
 -------------
