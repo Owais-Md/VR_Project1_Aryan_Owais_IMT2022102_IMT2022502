@@ -58,7 +58,7 @@ The project utilizes two publicly available datasets:
     └── img
 ```
 - **Access** : Stored in a zip file (MSFD.zip) with 9,382 valid image-mask pairs filtered from the original set.
-- **Note** : The dataset can be accessed using the link above and hasn't been downloaded as they are t
+- **Note** : The dataset can be accessed using the link above and hasn't been downloaded as they are they are very large in size.
 
 ## Preprocessing
 -------------
@@ -200,7 +200,7 @@ The project utilizes two publicly available datasets:
 - **All hyperparameter configurations used** :
  <img width="989" alt="Screenshot 2025-03-25 at 5 30 12 PM" src="https://github.com/user-attachments/assets/6f0e1880-dc14-4169-a9b9-b13222f88748" />
 
-- **Best hyperparameter onfiguration** :
+- **Best hyperparameter configuration** :
  <img width="989" alt="Screenshot 2025-03-25 at 5 31 43 PM" src="https://github.com/user-attachments/assets/c7f084ba-5746-40bf-a3d9-2d9b8288edf4" />
 
 ### U-Net (Task D)
@@ -278,12 +278,11 @@ pip install numpy opencv-python matplotlib scikit-learn scikit-image tensorflow 
 ### Directory Structure
 -------------------
 ```
-VR_Project1_[YourName]_[YourRollNo]/
-├── datasets/
-│   ├── finaldataset.zip
-│   ├── MSFD.zip
-├── classification_notebook.ipynb
-├── segmentation_notebook.ipynb
+VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/
+├── BinaryClassification.ipynb
+├── Segmentation.ipynb
+├── all_cnn_hyperparameters.csv
+├── best_cnn_hyperparameters.csv
 ├── README.md
 ```
 
