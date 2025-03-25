@@ -220,6 +220,7 @@ The project utilizes two publicly available datasets:
 - **Best hyperparameter configuration** :
  <img width="989" alt="Screenshot 2025-03-25 at 5 31 43 PM" src="https://github.com/user-attachments/assets/c7f084ba-5746-40bf-a3d9-2d9b8288edf4" />
 
+
 ### U-Net (Task D)
 
 - **Hyperparameters** :
@@ -230,6 +231,121 @@ The project utilizes two publicly available datasets:
   - Loss: Binary cross-entropy
 - **Experiments** : Single configuration trained due to computational constraints, with early stopping considered but not implemented in the provided code.
 
+---
+
+### Additional Experiments for U-Net (Task D)
+
+- **Model 1 (Baseline U-Net):**
+    - Architecture with fewer filters in encoder and decoder.
+    - Learning rate: 0.0005
+    - Batch size: 8
+    - Loss: Binary Cross-Entropy
+    - Epochs: 10
+    - **Results:**
+        - IoU: 0.78
+        - Dice: 0.85
+    - **Challenges:**
+        - Lower performance due to reduced model capacity.
+        - Faster training but led to loss of spatial information.
+
+- **Model 2 (Final U-Net - Best Configuration):**
+    - Optimized U-Net with tuned hyperparameters.
+    - Learning rate: 0.0001
+    - Batch size: 8
+    - Loss: Binary Cross-Entropy
+    - Epochs: 10
+    - **Results:**
+        - IoU: 0.84
+        - Dice: 0.91
+    - **Advantages:**
+        - Skip connections improved spatial preservation.
+        - Achieved better segmentation performance compared to Model 1.
+
+---
+
+### U-Net Model Summary
+``` 
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                   ┃ Output Shape                 ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ Conv2d                         │ [1, 64, 256, 256]            │            1792 │
+│ ReLU                           │ [1, 64, 256, 256]            │               0 │
+│ Conv2d                         │ [1, 64, 256, 256]            │           36928 │
+│ ReLU                           │ [1, 64, 256, 256]            │               0 │
+│ Sequential                     │ [1, 64, 256, 256]            │           38720 │
+│ DoubleConv                     │ [1, 64, 256, 256]            │           38720 │
+│ MaxPool2d                      │ [1, 64, 128, 128]            │               0 │
+│ EncoderBlock                   │ [1, 64, 256, 256]            │           38720 │
+│ EncoderBlock                   │ [1, 64, 128, 128]            │           38720 │
+│ Conv2d                         │ [1, 128, 128, 128]           │           73856 │
+│ ReLU                           │ [1, 128, 128, 128]           │               0 │
+│ Conv2d                         │ [1, 128, 128, 128]           │          147584 │
+│ ReLU                           │ [1, 128, 128, 128]           │               0 │
+│ Sequential                     │ [1, 128, 128, 128]           │          221440 │
+│ DoubleConv                     │ [1, 128, 128, 128]           │          221440 │
+│ MaxPool2d                      │ [1, 128, 64, 64]             │               0 │
+│ EncoderBlock                   │ [1, 128, 128, 128]           │          221440 │
+│ EncoderBlock                   │ [1, 128, 64, 64]             │          221440 │
+│ Conv2d                         │ [1, 256, 64, 64]             │          295168 │
+│ ReLU                           │ [1, 256, 64, 64]             │               0 │
+│ Conv2d                         │ [1, 256, 64, 64]             │          590080 │
+│ ReLU                           │ [1, 256, 64, 64]             │               0 │
+│ Sequential                     │ [1, 256, 64, 64]             │          885248 │
+│ DoubleConv                     │ [1, 256, 64, 64]             │          885248 │
+│ MaxPool2d                      │ [1, 256, 32, 32]             │               0 │
+│ EncoderBlock                   │ [1, 256, 64, 64]             │          885248 │
+│ EncoderBlock                   │ [1, 256, 32, 32]             │          885248 │
+│ Conv2d                         │ [1, 512, 32, 32]             │         1180160 │
+│ ReLU                           │ [1, 512, 32, 32]             │               0 │
+│ Conv2d                         │ [1, 512, 32, 32]             │         2359808 │
+│ ReLU                           │ [1, 512, 32, 32]             │               0 │
+│ Sequential                     │ [1, 512, 32, 32]             │         3539968 │
+│ DoubleConv                     │ [1, 512, 32, 32]             │         3539968 │
+│ MaxPool2d                      │ [1, 512, 16, 16]             │               0 │
+│ EncoderBlock                   │ [1, 512, 32, 32]             │         3539968 │
+│ EncoderBlock                   │ [1, 512, 16, 16]             │         3539968 │
+│ Conv2d                         │ [1, 1024, 16, 16]            │         4719616 │
+│ ReLU                           │ [1, 1024, 16, 16]            │               0 │
+│ Conv2d                         │ [1, 1024, 16, 16]            │         9438208 │
+│ ReLU                           │ [1, 1024, 16, 16]            │               0 │
+│ Sequential                     │ [1, 1024, 16, 16]            │        14157824 │
+│ DoubleConv                     │ [1, 1024, 16, 16]            │        14157824 │
+│ ConvTranspose2d                │ [1, 512, 32, 32]             │         2097664 │
+│ Conv2d                         │ [1, 512, 32, 32]             │         4719104 │
+│ ReLU                           │ [1, 512, 32, 32]             │               0 │
+│ Conv2d                         │ [1, 512, 32, 32]             │         2359808 │
+│ ReLU                           │ [1, 512, 32, 32]             │               0 │
+│ Sequential                     │ [1, 512, 32, 32]             │         7078912 │
+│ DoubleConv                     │ [1, 512, 32, 32]             │         7078912 │
+│ DecoderBlock                   │ [1, 512, 32, 32]             │         9176576 │
+│ ConvTranspose2d                │ [1, 256, 64, 64]             │          524544 │
+│ Conv2d                         │ [1, 256, 64, 64]             │         1179904 │
+│ ReLU                           │ [1, 256, 64, 64]             │               0 │
+│ Conv2d                         │ [1, 256, 64, 64]             │          590080 │
+│ ReLU                           │ [1, 256, 64, 64]             │               0 │
+│ Sequential                     │ [1, 256, 64, 64]             │         1769984 │
+│ DoubleConv                     │ [1, 256, 64, 64]             │         1769984 │
+│ DecoderBlock                   │ [1, 256, 64, 64]             │         2294528 │
+│ ConvTranspose2d                │ [1, 128, 128, 128]           │          131200 │
+│ Conv2d                         │ [1, 128, 128, 128]           │          295040 │
+│ ReLU                           │ [1, 128, 128, 128]           │               0 │
+│ Conv2d                         │ [1, 128, 128, 128]           │          147584 │
+│ ReLU                           │ [1, 128, 128, 128]           │               0 │
+│ Sequential                     │ [1, 128, 128, 128]           │          442624 │
+│ DoubleConv                     │ [1, 128, 128, 128]           │          442624 │
+│ DecoderBlock                   │ [1, 128, 128, 128]           │          573824 │
+│ ConvTranspose2d                │ [1, 64, 256, 256]            │           32832 │
+│ Conv2d                         │ [1, 64, 256, 256]            │           73792 │
+│ ReLU                           │ [1, 64, 256, 256]            │               0 │
+│ Conv2d                         │ [1, 64, 256, 256]            │           36928 │
+│ ReLU                           │ [1, 64, 256, 256]            │               0 │
+│ Sequential                     │ [1, 64, 256, 256]            │          110720 │
+│ DoubleConv                     │ [1, 64, 256, 256]            │          110720 │
+│ DecoderBlock                   │ [1, 64, 256, 256]            │          143552 │
+│ Conv2d                         │ [1, 1, 256, 256]             │              65 │
+│ UNet                           │ [1, 1, 256, 256]             │        31031745 │
+└────────────────────────────────┴──────────────────────────────┴─────────────────┘
+```
 ## Results
 -------
 ### Task A: Traditional ML Classifiers(SVM, Neural Network, XGBoost)
@@ -248,98 +364,181 @@ The project utilizes two publicly available datasets:
   
   ![Screenshot 2025-03-25 at 5 38 12 PM](https://github.com/user-attachments/assets/c7628180-8aa7-44f8-9404-522a25c48bfc)
 
-
 ### Task C: Traditional Segmentation
 
-- **Sample Results (on one image)**:
-  - IoU: 0.65
-  - Dice: 0.79
+#### Methodology
+- **K-Means Clustering:**
+    - Clusters pixels into 3 groups.
+    - Mask region is identified using the centroid closest to the mask’s color.
+    - Handles high-contrast mask patterns but may miss fine details.
+- **Region Growing with Flood Fill:**
+    - Seed point initialized at the center of the image.
+    - Flood fill applied with a tolerance to capture nearby pixels of similar intensity.
+    - Morphological closing applied to refine the segmentation result.
+
+#### Avg Accuracy:
+- **IoU:** 0.398
+- **Dice:** 0.547
+
+---
 
 ### Task D: U-Net Segmentation
 
-- **Validation Results**:
-  - Average IoU: 0.82
-  - Average Dice: 0.90
+#### Model Architecture
+- **Encoder:** Series of convolutional layers followed by max pooling.
+- **Bottleneck:** Two convolutional layers at the deepest level.
+- **Decoder:** Upsampling with skip connections to preserve spatial information.
+- **Final Layer:** 1x1 convolution followed by sigmoid activation.
+
+#### Training Details
+- **Loss Function:** Binary Cross-Entropy
+- **Optimizer:** Adam
+- **Learning Rate:** 0.0001
+- **Batch Size:** 8
+- **Epochs:** 10
+- **Data Split:** 70% Training, 15% Validation, 15% Test
+
+#### Validation Results:
+- **Average IoU:** 0.9240
+- **Average Dice:** 0.9561
+
+---
 
 ## Comparison
 
-- **Classification** : CNN (95.85%) outperforms SVM (93.53%), MLP (91.09%), and XGBoost (92.43%).
-- **Segmentation** : U-Net (IoU=0.82, Dice=0.90) significantly outperforms traditional method (IoU=0.65, Dice=0.79).
+### Classification
+- **CNN Accuracy:** 95.85%  
+    - Outperforms SVM (93.53%), MLP (91.09%), and XGBoost (92.43%).  
+    - CNN captures spatial features better, giving higher accuracy.
+
+### Segmentation
+- **U-Net:** IoU = 0.9240, Dice = 0.9561
+    - Extremely high time to run using Otsu, and terrible result using FloodFill which is faster and was used for evaluation
+    - Significantly outperforms traditional segmentation methods (IoU = 0.398, Dice = 0.547).
+    - Skip connections preserve spatial information, improving segmentation quality.
+
+---
 
 ## Observations and Analysis
--------------------------
-### Classification:
-- CNN outperforms the traditional ML classifiers used as expected as traditional ML classifiers rely on handcrafted features (like HOG, SIFT), which might not capture all the nuances of the images. CNNs learn hierarchical features that can capture more complex patterns, potentially leading to higher accuracy.
-- Hyperparameter tuning (e.g., lower dropout, optimal learning rate) significantly boosts CNN performance.
-- **Challenges**:
-  - Traiditonal ML Classifiers: Had to experiment with many different parameters for best results. For Neural network,  We had to add dropout layers and optimiser to prevent overfitting. We tried Randomised searchCV initially on XGBoost but as the dataset was large and it was taking a very long time, we empirically found the best parameters after many tries and used k-fold cross validation to mitigate this issue.
-  - CNN: We had to experiment with a lot of hyperparameter configurations(12) to get the best accuracy and add dropout layers and optimiser as well which led to increased training time.
-### Segmentation:
-- U-Net provides precise mask delineation thanks to skip connections preserving spatial details, unlike the coarser traditional method.
-- Traditional segmentation struggles with complex mask shapes and lighting variations, leading to lower IoU and Dice scores.
-- **Challenges**: U-Net training is computationally intensive as the number of channels here are high; traditional methods are faster but less accurate.
-### General:
-- Deep learning models (CNN, U-Net) consistently outperform traditional approaches, justifying their use despite higher resource demands.
-- Dataset quality (e.g., alignment of image-mask pairs) impacts segmentation performance.
+
+### Classification
+- CNN performs better due to its ability to learn hierarchical spatial features.
+- Traditional ML classifiers rely on handcrafted features, which limits their performance.
+- **Challenges:**
+    - Neural networks required extensive hyperparameter tuning to achieve optimal performance.
+    - XGBoost took longer due to the size of the dataset.
+
+### Segmentation
+- **U-Net**:
+    - Provides precise segmentation with skip connections that retain spatial information.
+    - Requires significant computational resources but achieves better segmentation results.
+- **Traditional Segmentation**:
+    - K-Means often misidentifies regions with high-intensity variance.
+    - Region Growing is sensitive to the choice of seed and tolerance, affecting accuracy.
+- **Challenges:**
+    - U-Net training is computationally intensive.
+    - Traditional methods are faster but often misclassify regions.
+    - Had to download CUDA and pytorch that is compatible with CUDA to actually be able to train the model, as training on GPU was very difficult
+
+### General
+- Deep learning models (CNN, U-Net) outperform traditional approaches but require careful tuning and computational resources.
+- Misalignment between image-mask pairs affects segmentation quality.
+
+---
 
 ## How to Run the Code
--------------------
-### Prerequisites
-- Python: 3.7+
-- Libraries: Install via pip:
-```
-bash
 
+### Prerequisites
+- **Python Version:** 3.7+
+- **Libraries:** Install via pip:
+```
 pip install numpy opencv-python matplotlib scikit-learn scikit-image tensorflow torch torchvision
 ```
-- **Datasets**:
-  - Download dataset.zip from GitHub.
-  - Download MSFD.zip from GitHub.
-  - Place both in the datasets/ directory.
+- **Datasets:**
+    - Download `finaldataset.zip` from GitHub.
+    - Download `MSFD.zip` from GitHub.
+    - Place both in the `datasets/` directory.
+
+---
 
 ### Directory Structure
--------------------
 ```
 VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/
 ├── BinaryClassification.ipynb
 ├── Segmentation.ipynb
 ├── all_cnn_hyperparameters.csv
 ├── best_cnn_hyperparameters.csv
+├── output_viz
+│   ├── result_(random image).png
+│   └── result_(random image).png
 ├── README.md
 ```
 
+---
+
 ### Running Classification (BinaryClassification.ipynb)
---------------------------------------------------------
 - Open Notebook:
-  ```
-    bash
-    jupyter notebook BinaryClassification.ipynb
-  ```
+```
+jupyter notebook BinaryClassification.ipynb
+```
 - Update Paths:
-        Set zip_file_path to "finaldataset.zip" and ensure that it's in the same folder as the repository.
+    - Set `zip_file_path` to `finaldataset.zip` and ensure that it's in the same folder as the repository.
 - Execute Cells:
-  - Run all cells sequentially to:
-    - Load and preprocess data.
-    - Train ML classifiers (Task A).
-    - Train and tune CNN (Task B).
-- Outputs: Accuracy metrics for SVM, MLP, and CNN.
+    - Run all cells to:
+        - Load and preprocess data.
+        - Train ML classifiers (Task A).
+        - Train and tune CNN (Task B).
+- **Outputs:** Accuracy metrics for SVM, MLP, and CNN.
+
+---
 
 ### Running Segmentation (Segmentation.ipynb)
---------------------------------------------------
 - Open Notebook:
-  ```
-    bash
-    jupyter notebook Segmentation.ipynb
-  ```
+```
+jupyter notebook Segmentation.ipynb
+```
 - Update Paths:
-        Set zip_file_path to "MSFD.zip" and ensure that it is in the same folder as the repository.
+    - Set `zip_file_path` to `MSFD.zip` and ensure that it is in the same folder as the repository.
 - Execute Cells:
-        Run all cells to:
-            Perform traditional segmentation (Task C).
-            Train and evaluate U-Net (Task D).
-- Outputs: Visualizations, IoU, and Dice scores.
+    - Run all cells to:
+        - Perform traditional segmentation (Task C).
+        - Train and evaluate U-Net (Task D).
+- **Outputs:** Visualizations, IoU, and Dice scores.
+
+---
+
+## Results and Visualizations
+----------------------------
+
+### Sample Results of Segmentation
+
+- Below are sample visualizations generated from the `test_dataset`:
+    - Original Image
+    - Ground Truth Mask
+    - Model Prediction
+    - Overlay (TP/FP/FN) (white/red/blue)
+
+#### Example Results:
+
+  <img width="400" alt="Result 1" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_1127.png" />
+
+
+  <img width="400" alt="Result 2" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_214.png" />
+
+
+  <img width="400" alt="Result 3" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_403.png" />
+
+  
+  <img width="400" alt="Result 4" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_440.png" />
+
+
+  <img width="400" alt="Result 5" src="https://raw.githubusercontent.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502/main/output_viz/result_777.png" />
+
+
+
+
 
 ## Notes
------
 - Ensure sufficient RAM and GPU (if available) for U-Net training.
 - Outputs are printed in the notebook; no additional intervention is required.
+ 
