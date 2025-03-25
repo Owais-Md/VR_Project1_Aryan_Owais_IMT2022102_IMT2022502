@@ -126,7 +126,15 @@ The project utilizes two publicly available datasets:
 --------------------------------------------------
 #### B.i: Design and Train a CNN
 
-- **Architecture** : We used 3 convolutional blocks followed by fully connected layers followed by the output layer for binary classification(Model: 'sequential_11'). The structure can be seen below:
+- **Architecture** : We used 3 convolutional blocks followed by fully connected layers followed by the output layer for binary classification(Model: 'sequential_11').
+  - Conv layers: extract hierarchial features.
+  - Pooling layers(2x2 Max Pooling): reduce spatial dimensions.
+  - Activation function: ReLU(introduces non-linearity).
+  - Fully connected layers(Dense(128, activation='relu')): Fully connected hidden layers(like dense layers in traditional Neural network)
+  - Dropout rate: Prevents overfitting
+  - Filters: Increasing filters to caputre more complex features.
+  - Output layerDense((1, activation='sigmoid')): Binary classification(mask/no mask) output
+- The structure can be seen below:
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
@@ -152,7 +160,7 @@ The project utilizes two publicly available datasets:
 └──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
 </pre>
 
-- **Training** : Images are loaded via a custom ZipDataGenerator, trained with Adam optimizer and binary cross-entropy loss.
+- **Training** : Images are loaded via a custom ZipDataGenerator, features are split into training and validation sets (80-20 split), trained with Adam optimizer and binary cross-entropy loss.
 
 #### B.ii: Hyperparameter Variations
 
