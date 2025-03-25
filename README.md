@@ -77,8 +77,8 @@ The project utilizes two publicly available datasets:
 
 - **Classifiers** :
   - **Support Vector Machine (SVM)** : We tried altering between various kernels and finally used 'rbf' kernel as it gave the best results.
-  - **Neural Network** :
-    - Structure: To get the best results, we had to alter in various ways like adding dropout layers, using adam optimiser, experimenting with the number of hidden layers and the number of nodes in each layer to get the best result possible. The final structure is as shown below:
+  - **Neural Network** : To get the best results, we had to alter in various ways like adding dropout layers, using adam optimiser, experimenting with the number of hidden layers and the number of nodes in each layer to get the best result possible. The final structure is as shown below:
+```
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
@@ -97,7 +97,7 @@ The project utilizes two publicly available datasets:
 │ dense_37 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                   │              <span style="color: #00af00; text-decoration-color: #00af00">65</span> │
 └──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
 </pre>
-
+```
   - **XGBoost** : 
 - **Training**: Features are split into training and validation sets (80-20 split), and classifiers are trained using sklearn.
 - **Evaluation**: Accuracy is computed on the validation set using accuracy_score.
