@@ -61,7 +61,7 @@ The project utilizes two publicly available datasets:
 
 ## Preprocessing
 -------------
-- **Classification Dataset** : Images are resized to 64x64 pixels, normalized to [0, 1], and split into training (80%) and validation (20%) sets.
+- **Classification Dataset** : Images are resized to 64x64 pixels, normalized, and split into training (80%) and validation (20%) sets.
 - **Segmentation Dataset** : Images and masks are resized to 128x128 pixels, normalized, and split into training (80%) and validation (20%) sets for U-Net training.
 
 ## Methodology
