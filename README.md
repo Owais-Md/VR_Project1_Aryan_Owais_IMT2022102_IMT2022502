@@ -214,15 +214,19 @@ The project utilizes two publicly available datasets:
 
 ## Results
 -------
-### Task A: ML Classifiers
+### Task A: Traditional ML Classifiers(SVM, Neural Network, XGBoost)
 
 - **SVM** : 93.53% accuracy
 - **Neural Network (MLP)** : 91.09% accuracy
-- **XGBoost** : 92.43% accuracy (additional experiment from notebook)
+- **XGBoost** : 92.43% accuracy
+  ![Screenshot 2025-03-25 at 5 36 30 PM](https://github.com/user-attachments/assets/11271674-60b6-4348-8849-c77ab6c050d6)
 
-### Task B: CNN
 
-- Best CNN: 95.85% accuracy (learning rate=0.001, Adam, batch size=32, dropout=0.3, sigmoid)
+### Task B: Convolutional Neural Network(CNN)
+
+- **CNN** : 95.85% accuracy {'learning_rate': 0.001, 'optimizer': 'adam', 'batch_size': 32, 'final_activation': 'sigmoid', 'dropout_rate': 0.3}
+  ![Screenshot 2025-03-25 at 5 38 12 PM](https://github.com/user-attachments/assets/c7628180-8aa7-44f8-9404-522a25c48bfc)
+
 
 ### Task C: Traditional Segmentation
 
@@ -244,13 +248,13 @@ The project utilizes two publicly available datasets:
 ## Observations and Analysis
 -------------------------
 ### Classification:
-- CNNs outperform traditional ML classifiers due to their ability to learn hierarchical features directly from raw images, unlike handcrafted HOG features which may miss subtle patterns.
+- CNN outperforms the traditional ML classifiers used as expected as traditional ML classifiers rely on handcrafted features (like HOG, SIFT), which might not capture all the nuances of the images. CNNs learn hierarchical features that can capture more complex patterns, potentially leading to higher accuracy.
 - Hyperparameter tuning (e.g., lower dropout, optimal learning rate) significantly boosts CNN performance.
 - **Challenges**: Limited dataset size may lead to overfitting; mitigated by dropout and early stopping.
 ### Segmentation:
 - U-Net provides precise mask delineation thanks to skip connections preserving spatial details, unlike the coarser traditional method.
 - Traditional segmentation struggles with complex mask shapes and lighting variations, leading to lower IoU and Dice scores.
-- **Challenges**: U-Net training is computationally intensive; traditional methods are faster but less accurate.
+- **Challenges**: U-Net training is computationally intensive as the number of channels here are high; traditional methods are faster but less accurate.
 ### General:
 - Deep learning models (CNN, U-Net) consistently outperform traditional approaches, justifying their use despite higher resource demands.
 - Dataset quality (e.g., alignment of image-mask pairs) impacts segmentation performance.
@@ -317,5 +321,3 @@ VR_Project1_[YourName]_[YourRollNo]/
 -----
 - Ensure sufficient RAM and GPU (if available) for U-Net training.
 - Outputs are printed in the notebook; no additional intervention is required.
-
-Replace [YourName] and [YourRollNo] with your actual name and roll number before submission.
