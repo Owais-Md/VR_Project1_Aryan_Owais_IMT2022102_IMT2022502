@@ -5,7 +5,7 @@
 - **Contributors** :
   - Aryan Mishra(IMT2022502, Aryan.Mishra@iiitb.ac.in)
   - Md Owais(IMT2022102, Mohammad.Owais@iiitb.ac.in)
-- ** Clone GitHub Repository** :
+- **Clone GitHub Repository** :
   ```
   https://github.com/Owais-Md/VR_Project1_Aryan_Owais_IMT2022102_IMT2022502.git
   ```
